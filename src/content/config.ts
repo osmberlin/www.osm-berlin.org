@@ -3,13 +3,7 @@ import { defineCollection, z } from 'astro:content'
 const postCollection = defineCollection({
   schema: z.object({
     title: z.string(),
-    project: z.enum([
-      'about',
-      'crowdmap',
-      'strassenraumkarte',
-      'spielplatzkarte',
-      'unkown',
-    ]),
+    project: z.enum(['about', 'crowdmap', 'strassenraumkarte', 'spielplatzkarte', 'unkown']),
     pubDate: z
       .string()
       .or(z.date())
