@@ -1,0 +1,59 @@
+---
+import ProjectHeadline from '@components/text/ProjectHeadline.astro'
+import ProseSection from '@components/text/ProseSection.astro'
+import LayoutArticle from '@layouts/LayoutArticle.astro'
+---
+
+<LayoutArticle title="Spielplatzkarte – Datenqualität verbessern">
+  <ProjectHeadline
+    title="Datenqualität"
+    subtitle="Spielplätze und Spielgeräte eintragen und attributieren"
+  />
+
+  <ProseSection>
+    <p>
+      Die Daten für diese Karte stammen direkt aus <a
+        target="_blank"
+        href="https://de.wikipedia.org/wiki/OpenStreetMap">OpenStreetMap</a
+      >. OpenStreetMap ist eine freie, kollaborative Karte, die von Millionen Freiwilligen auf der
+      ganzen Welt erstellt und gepflegt wird. In OpenStreetMap – und genauso in dieser
+      Spielplatzkarte – sind also nur die Daten enthalten, die auch jemand eingetragen hat!
+    </p>
+    <p>
+      Du kannst selbst dazu beitragen, die Karte zu vervollständigen, denn jede und jeder kann bei
+      OpenStreetMap (OSM) mitmachen. Allgemeine Hinweise zum Einstieg in OSM gibt es unter anderem
+      bei <a target="_blank" href="https://learnosm.org/de/beginner/">LearnOSM.org</a>.
+    </p>
+    <p>
+      Wenn du Spielplätze in OSM beitragen möchtest und dich bereits ein bisschen mit OpenStreetMap
+      auskennst, wirf doch einen Blick auf die Seite über <a
+        target="_blank"
+        href="https://wiki.openstreetmap.org/wiki/Tag:leisure%3Dplayground"
+        >Spielplätze im OSM-Wiki</a
+      > sowie die Seite zur <a
+        target="_blank"
+        href="https://wiki.openstreetmap.org/wiki/Key:playground">Erfassung einzelner Spielgeräte</a
+      >.
+    </p>
+    <p>
+      <b>Ein Hinweis zur Ergänzung von Fotos:</b> Um einen besseren Eindruck der Spielplätze zu bekommen,
+      lohnt es sich, eins oder mehrere Fotos zu hinterlegen. Am Besten ist es, die Fotos in <a
+        target="_blank"
+        href="https://commons.wikimedia.org/wiki/Hauptseite">Wikimedia Commons</a
+      > hochzuladen und über das <a
+        target="_blank"
+        href="https://wiki.openstreetmap.org/wiki/Key:wikimedia_commons"
+        >wikimedia_commons-Tagging</a
+      > in OSM zu hinterlegen. Es ist auch möglich, in der Spielplatzkarte eine ganze Gallerie von Fotos
+      anzuzeigen, wenn in Wikimedia Commons eine eigene Kategorie für einen Spielplatz angelegt wird
+      und diese dann am Spielplatzobjekt hinterlegt wird. Dieser Spielplatz ist <a
+        target="_blank"
+        href="https://www.openstreetmap.org/way/552643786">ein Beispiel</a
+      > dafür.
+    </p>
+    <p>
+      In Zukunft wird es hier auch weitere Informationen und Anleitungen zum Mappen von Spielplätzen
+      geben!
+    </p>
+  </ProseSection>
+</LayoutArticle>

@@ -1,0 +1,50 @@
+---
+import Card from '@components/text/Card.astro'
+import CardWrapper from '@components/text/CardWrapper.astro'
+import ProjectHeadline from '@components/text/ProjectHeadline.astro'
+import ProseSection from '@components/text/ProseSection.astro'
+import LayoutArticle from '@layouts/LayoutArticle.astro'
+import Map from 'astro-heroicons/outline/Map.astro'
+---
+
+<LayoutArticle title="Spielplatzkarte – Spielplätze und Spielgeräte in Berlin">
+  <ProjectHeadline title="Spielplatzkarte" subtitle="Spielplätze und Spielgeräte in Berlin" />
+
+  <CardWrapper classes="sm:grid-cols-1" sectionClasses="mb-3">
+    <Card href="/spielplatzkarte" text="Zur Karte…">
+      <Map class="size-10" />
+    </Card>
+  </CardWrapper>
+
+  <ProseSection highlight>
+    <p>
+      Die Spielplatzkarte ist eine freie und interaktive Web-Karte zur digitalen Erkundung von
+      Spielplätzen und Spielgeräten. Die Daten dafür kommen aus <a
+        href="https://de.wikipedia.org/wiki/OpenStreetMap"
+        target="_blank">OpenStreetMap</a
+      >.
+    </p>
+
+    <p>
+      Die Spielplatzkarte ist ein Projekt der Berliner OpenStreetMap-Community, initiiert von Alex
+      Seidel im Rahmen einer Weiterbildung <a
+        href="https://gis-trainer.com/de/gis_webmapping.php"
+        target="_blank">GIS- und Webmapping</a
+      > bei <a href="https://gis-trainer.com/de/index.php" target="_blank">GIS-Trainer</a>.
+    </p>
+
+    <p>
+      Alex ist erreichbar über sein <a
+        href="https://www.openstreetmap.org/user/Supaplex030/"
+        target="_blank">OSM-User-Profil</a
+      > oder per Mail an alex (a) osm-berlin (.) org.
+    </p>
+
+    <p>
+      Das Projekt ist OpenSource und <a
+        href="https://github.com/SupaplexOSM/spielplatzkarte"
+        target="_blank">auf GitHub verfügbar</a
+      >.
+    </p>
+  </ProseSection>
+</LayoutArticle>

@@ -1,0 +1,62 @@
+---
+import Card from '@components/text/Card.astro'
+import CardWrapper from '@components/text/CardWrapper.astro'
+import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+import CalendarDays from 'astro-heroicons/solid/CalendarDays.astro'
+import BookOpen from 'astro-heroicons/outline/BookOpen.astro'
+import Cube from 'astro-heroicons/outline/Cube.astro'
+import { projectConfigs } from 'src/projectConfigs.const'
+---
+
+<LayoutArticlePageAstro title="OpenStreetMap Berlin">
+  <header class="not-prose">
+    <h1
+      class="bg-gradient-to-br from-teal-500 to-emerald-400 bg-clip-text pb-2 text-4xl font-extrabold leading-8 text-transparent md:text-6xl md:leading-[3.25rem]"
+    >
+      Die OpenStreetMap Berlin Community
+    </h1>
+    <p class="-mt-2 text-3xl font-bold text-sky-700">Projekte, Tools und Analysen</p>
+  </header>
+
+  <CardWrapper classes="mt-10">
+    <Card
+      external
+      href="https://wiki.openstreetmap.org/wiki/Berlin"
+      text="Wiki öffnen…"
+      alt="OSM Berlin Community Wiki Page"
+    >
+      <BookOpen class="size-10" />
+    </Card>
+    <Card
+      external
+      href="https://wiki.openstreetmap.org/wiki/Berlin"
+      text="Zum Stammtisch…"
+      alt="OSM Berlin Stammtisch"
+    >
+      <CalendarDays class="size-10" />
+    </Card>
+  </CardWrapper>
+
+  <CardWrapper headline="Ausgewählte Projekte">
+    {
+      Object.entries(projectConfigs).map(([_projectKey, projectValues]) => {
+        if (!projectValues.enabled) return null
+        if (!projectValues.name) return null
+
+        return (
+          <Card
+            href="https://wiki.openstreetmap.org/wiki/Berlin"
+            text={projectValues.name}
+            alt={projectValues.meta?.description}
+          >
+            {projectValues.meta ? (
+              <img src={projectValues.meta.imagePath} class="m-0 -mt-5 overflow-clip rounded-t" />
+            ) : (
+              <Cube class="size-10" />
+            )}
+          </Card>
+        )
+      })
+    }
+  </CardWrapper>
+</LayoutArticlePageAstro>

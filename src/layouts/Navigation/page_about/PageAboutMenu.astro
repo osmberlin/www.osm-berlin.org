@@ -1,0 +1,23 @@
+---
+import MenuItem from '../MenuItem/MenuItem.astro'
+import MenuItemHeadline from '../MenuItem/MenuItemHeadline.astro'
+import MenuItemWrapper from '../MenuItem/MenuItemWrapper.astro'
+import { projectConfigs } from 'src/projectConfigs.const'
+
+const enabledProjectConfigs = Object.entries(projectConfigs)
+  .filter(([_key, value]) => value.enabled)
+  .filter(([_key, value]) => value.name)
+---
+
+<MenuItemWrapper>
+  <MenuItem href="/" highlightExactMatch>Übersicht</MenuItem>
+</MenuItemWrapper>
+
+<MenuItemHeadline>Projekte</MenuItemHeadline>
+<MenuItemWrapper>
+  {
+    enabledProjectConfigs.map(([_, { name, root }]) => {
+      return <MenuItem href={root}>{name}</MenuItem>
+    })
+  }
+</MenuItemWrapper>

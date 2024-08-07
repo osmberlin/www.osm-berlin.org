@@ -1,0 +1,56 @@
+---
+// TODO: Replace the wrapper for <MenuItem> with <MenuItemWrapper> which does not work ATM.
+// import MenuItemWrapper from './MenuItem/MenuItemWrapper.astro'
+import { pickProject } from '@layouts/utils/pickProject'
+import MenuItem from './MenuItem/MenuItem.astro'
+import MenuItemHeadline from './MenuItem/MenuItemHeadline.astro'
+import NavigationFooter from './NavigationFooter.astro'
+import { projectConfigs, type NavigationProjects } from 'src/projectConfigs.const'
+
+interface Props {
+  project: NavigationProjects
+  menuHighlight?: string | undefined
+}
+
+const isDev = import.meta.env.DEV
+const { project, menuHighlight } = Astro.props
+const { menus } = projectConfigs[project]
+---
+
+{
+  menus?.map((menu) => {
+    if (typeof menu === 'function') {
+      const NavComp = menu
+      return <NavComp menuHighlight={menuHighlight} />
+    }
+
+    return (
+      <Fragment>
+        {typeof menu.label === 'string' && <MenuItemHeadline>{menu.label}</MenuItemHeadline>}
+
+        <div class="mb-7 mt-5 flex flex-col overflow-hidden rounded border border-b-0 border-gray-200 sm:mt-0">
+          {menu.items.map(({ href, label }) => {
+            return (
+              <MenuItem href={href} highlightExactMatch={true}>
+                {label}
+              </MenuItem>
+            )
+          })}
+        </div>
+      </Fragment>
+    )
+  })
+}
+
+{
+  !menus && isDev && (
+    <p class="text-red-500">
+      `project` `{pickProject(Astro.request.url)}` für Navigation nicht erkannt.
+    </p>
+  )
+}
+
+<NavigationFooter
+  menuHighlight={menuHighlight}
+  additionalLinks={projectConfigs[project].additionalFooterLinks}
+/>
