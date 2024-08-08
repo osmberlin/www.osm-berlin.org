@@ -71,7 +71,7 @@ export const OverlayStats = () => {
         >
           {mapLoaded ? (
             <>
-              <div className="flex items-baseline text-2xl font-semibold text-emerald-600">
+              <div className="flex items-baseline text-2xl font-semibold text-amber-600">
                 {stats[params.anzeige]?.km.toFixed((stats[params.anzeige]?.km || 0) < 100 ? 1 : 0)}
                 <span className="ml-2 text-sm font-medium text-gray-500">
                   /{' '}
@@ -85,7 +85,7 @@ export const OverlayStats = () => {
                 className={twJoin(
                   (stats[params.anzeige]?.percent || 0) > 0.6
                     ? 'bg-green-100 text-green-800'
-                    : 'bg-red-100 text-red-800',
+                    : 'bg-orange-100 text-orange-800',
                   'inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium md:mt-2 lg:mt-0',
                 )}
               >

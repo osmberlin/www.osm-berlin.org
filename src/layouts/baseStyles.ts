@@ -1,10 +1,10 @@
 import { twJoin } from 'tailwind-merge'
 
 export const menuActiveClasses =
-  'border-teal-600 bg-emerald-50 hover:bg-emerald-50 cursor-text font-semibold'
+  'border-teal-600 bg-amber-50 hover:bg-amber-50 cursor-text font-semibold'
 
 export const proseBase = twJoin(
-  'prose prose-blue',
+  'prose prose-orange',
   // <ul>
   '[--tw-prose-bullets:_gray]',
   // <code>
@@ -17,7 +17,7 @@ export const proseHeadings = twJoin(
   // <h#> anchor position
   'prose-headings:scroll-mt-10',
   // <h1>
-  'prose-h1:text-sky-700 prose-h1:mt-16 prose-h1:mb-3 first:prose-h1:mt-0',
+  'prose-h1:text-orange-700 prose-h1:mt-16 prose-h1:mb-3 first:prose-h1:mt-0',
   // <h2>
   'prose-h2:mt-16 prose-h2:mb-4',
   // <h3>
