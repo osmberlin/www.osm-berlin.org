@@ -88,8 +88,8 @@ export const projectConfigs = {
         label: null,
         items: [
           { href: '/spielplatzkarte/', label: 'Über das Projekt' },
-          { href: 'https://osmbln.uber.space/spielplatzkarte/', label: 'Karte' },
-          { href: '/spielplatzkarte/karte', label: 'Karte iFrame' },
+          { href: '/spielplatzkarte/karte', label: 'Karte' },
+          { href: 'https://osmbln.uber.space/spielplatzkarte/', label: 'Karte in neuem Fenster' },
           { href: '/spielplatzkarte/datenqualitaet', label: 'Daten verbessern' },
         ],
       },

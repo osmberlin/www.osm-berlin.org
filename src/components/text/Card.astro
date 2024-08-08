@@ -13,6 +13,7 @@ const { href, external, text, alt } = Astro.props
   href={href}
   class="flex grow flex-col items-center justify-center rounded bg-gray-100 pt-5 hover:bg-green-100"
   title={alt}
+  target={external ? '_blank' : undefined}
 >
   <slot />
 
