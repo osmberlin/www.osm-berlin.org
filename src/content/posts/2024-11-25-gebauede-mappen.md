@@ -9,7 +9,7 @@ inMenu: true
 language: 'de'
 ---
 
-Wir starten in die zweite Phase unseres Experiments mit CrowdMap. In unserem [Blogpost Anfang des Jahres haben wir die Motivation und technischen Chancen](https://www.osm-berlin.org/crowdmap/posts/2024-01-20-crowdmap/) zum diesem Projekt bereits vorgestellt.
+Wir starten in die zweite Phase unseres Experiments mit CrowdMap. In unserem Blogpost Anfang des Jahres haben wir die [Motivation und Chancen](https://www.osm-berlin.org/crowdmap/posts/2024-01-20-crowdmap/) zum diesem Projekt bereits vorgestellt.
 Die zentrale Frage, die wir beantworten wollen ist, wie CrowdMap nutzen können, um einen Daten "Layer" von OpenStreetMap – die Gebäude – in Berlin aktuell und gut gepflegt halten können.
 
 ## Phase 1: CrowdMap
