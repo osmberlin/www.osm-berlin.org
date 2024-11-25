@@ -10,7 +10,7 @@ language: 'de'
 ---
 
 Wir starten in die zweite Phase unseres Experiments mit CrowdMap. In unserem Blogpost Anfang des Jahres haben wir die [Motivation und Chancen](https://www.osm-berlin.org/crowdmap/posts/2024-01-20-crowdmap/) zum diesem Projekt bereits vorgestellt.
-Die zentrale Frage, die wir beantworten wollen ist, wie CrowdMap nutzen können, um einen Daten "Layer" von OpenStreetMap – die Gebäude – in Berlin aktuell und gut gepflegt halten können.
+Die zentrale Frage, die wir beantworten wollen ist, wie wir CrowdMap nutzen können, um einen Daten "Layer" von OpenStreetMap – die Gebäude – in Berlin aktuell und gut gepflegt halten können.
 
 ## Phase 1: CrowdMap
 
@@ -29,7 +29,7 @@ Jede Fläche ist eine Aufgabe, die wir gemeinsam abarbeiten können. Das passend
 
 **Im TaskingManger** können wir die Gebiete sehen und angeben, wenn wir an einem Gebiet arbeiten. Am Ende kann man einen öffentlichen Kommentar hinterlassen. Und wenn wir sehr genau sein wollen, könnten wir die zusätzliche 4-Augen-Mechanik nutzen und jede Aufgabe erneut prüfen lassen.
 
-[Auf der Projektseite für unser CrowdMap-Projekt in Xhain](https://tasks.openstreetmap.us/projects/704) findet ihr neben den Gebieten auch rot markierte Bereiche mit hoher Priorität. Das sind die Fläche, die wir als erstes abarbeiten sollten. Sie sind aus Kacheln zusammengesetzt, bei denen sich die Teilnehmer:innen in Phase 1 einig waren, das hier eine Kontrolle nötig ist.
+[Auf der Projektseite für unser CrowdMap-Projekt in Xhain](https://tasks.openstreetmap.us/projects/704) findet ihr neben den Gebieten auch rot markierte Bereiche mit hoher Priorität. Das sind die Flächen, die wir als erstes abarbeiten sollten. Sie sind aus Kacheln zusammengesetzt, bei denen sich die Teilnehmer:innen in Phase 1 einig waren, das hier eine Kontrolle nötig ist.
 
 ## Bitte mithelfen
 
@@ -57,7 +57,7 @@ Das größte Potential dabei ist, dass die Aufgaben in CrowdMap (Phase 1) auf vo
 
 Wie gut das skaliert, muss sich noch zeigen.
 
-Eine weitere Erkenntnis des Projektes ist, dass diese Methodik nur für ganz bestimmte Aktualisierungs-Aufgaben sinnvoll ist, nämlich flächige Geometrien für die es einen hochwertigen (aktuellen) Datensatz zum Abgleich gibt. Für Gebäude Daten also ein toller Workflow, aber für viele andere Szenarien braucht es anders Tooling.
+Eine weitere Erkenntnis des Projektes ist, dass diese Methodik nur für ganz bestimmte Aktualisierungs-Aufgaben sinnvoll ist, nämlich flächige Geometrien für die es einen hochwertigen (aktuellen) Datensatz zum Abgleich gibt. Für Gebäudedaten also ein toller Workflow, aber für viele andere Szenarien braucht es anders Tooling.
 
 ## Mappen
 
