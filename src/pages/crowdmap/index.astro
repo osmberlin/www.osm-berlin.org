@@ -1,14 +1,10 @@
 ---
-import ImageWrapper from '@components/ImageWrapper.astro'
-import ProjectHeadline from '@components/text/ProjectHeadline.astro'
-import ProseSection from '@components/text/ProseSection.astro'
-import LayoutArticle from '@layouts/LayoutArticle.astro'
-import ImageExample from '/public/social-sharing-crowdmap.png'
 import Card from '@components/text/Card.astro'
 import CardWrapper from '@components/text/CardWrapper.astro'
-import DocumentText from 'astro-heroicons/outline/DocumentText.astro'
+import ProjectHeadline from '@components/text/ProjectHeadline.astro'
+import LayoutArticle from '@layouts/LayoutArticle.astro'
 import CursorArrowRipple from 'astro-heroicons/outline/CursorArrowRipple.astro'
-import { linkStyles } from '@components/Link'
+import DocumentText from 'astro-heroicons/outline/DocumentText.astro'
 ---
 
 <LayoutArticle title="Crowdmap-Experiment – Gebäude in Berlin aktualisieren">
@@ -18,74 +14,19 @@ import { linkStyles } from '@components/Link'
   />
 
   <CardWrapper>
-    <div
-      class="not-prose flex grow flex-col items-center justify-center rounded bg-gray-100 pt-5 hover:bg-green-100"
+    <Card
+      href="/crowdmap/posts/2024-11-25-gebauede-mappen#bitte-mithelfen"
+      alt="Zur Anleitung…"
+      text="Mitmachen und Gebäude mappen"
     >
       <CursorArrowRipple class="size-10" />
-
-      <details>
-        <summary class:list={[linkStyles, 'mb-3 mt-1 inline-block cursor-pointer py-0']}>
-          <h2>Mitmachen…</h2>
-        </summary>
-        <p>
-          Aktuell teilen wir die URL zu Crowdmap nur im kleinen Kreis. Bitte melde dich <a
-            href="https://wiki.openstreetmap.org/wiki/Berlin/Verkehrswende#Kontakt_und_Kommunikation"
-            >im Matrix Kanal</a
-          > oder <a href="/contact">bei Tobias</a>.
-        </p>
-      </details>
-    </div>
-    <Card href="/crowdmap/posts/2024-01-20-crowdmap" alt="Einführung in das Projekt">
+    </Card>
+    <Card
+      href="/crowdmap/posts/2024-01-20-crowdmap"
+      alt="Einführung in das Projekt…"
+      text="Über das Projekt"
+    >
       <DocumentText class="size-10" />
     </Card>
   </CardWrapper>
-
-  <ProseSection highlight>
-    <h3>Helft mit und prüft mit uns die Gebäude in Friedrichshain-Kreuzberg!</h3>
-    <p>
-      Wir wollen wissen, in welchen Gebiete in Xhain die Gebäude in OSM verbessert werden müssen.
-      Dafür nutzen wir Crowdmap, <strong>um pro Karten-Ausschnitt zu beantworten…</strong>
-    </p>
-    <ul>
-      <li>
-        <strong>✅ hier ist alles OK </strong><br />
-        <em>"Hier stimmen die Gebäude aus OSM mit dem Luftbild überein."</em>
-      </li>
-      <li>
-        <strong>👀 hier gibt es etwas zu prüfen verbessern</strong><br />
-        <em
-          >"Hier müssen die Gebäude in OSM kontrolliert werden, denn es gibt Abweichungen zum
-          Luftbild."</em
-        >
-      </li>
-      <li>
-        <strong>🤷 diese Kachel bitte übersprungen</strong><br />
-        <em>"Ich kann die Frage für diese Kachel nicht beantworten."</em>
-      </li>
-    </ul>
-  </ProseSection>
-
-  <ProseSection>
-    <h3>FAQ: Wie genau soll ich sein?</h3>
-    <p>
-      Ziel 1 ist, große Unterschiede zu finden. Also fehlende Gebäude; Gebäude die abgerissen
-      wurden; Gebäude im Bau; Fehlende Baustellen;…
-    </p>
-    <p>Ziel 2 ist, größere Fehler zu finden. Beispielweise wenn eine Geometrie spürbar abweicht.</p>
-    <p>
-      Am Ende ist es aber eine persönliche Abwägung. Alles, was wir markieren, wollen wir später
-      erneut im Editor anschauen und korrigieren. Im besten Fall haben wir später auch mehrere
-      Antworten ("Meinunge") pro Kachel, so dass wir darüber eine Priorisierung vornehmen können.
-    </p>
-    <p>
-      Wir empfehlen auch, nicht zu viel Zeit mit jeder Kachel zu verbringen. Wenn dir nichts ins
-      Auge springt, dann ist der Unterschied vermutlich nicht groß genug. Die Idee der Crowdmap ist
-      es, große Gebiete schnell durchzuklicken um die relevanten Untergebiete herauszufiltern.
-    </p>
-    <ImageWrapper
-      src={ImageExample.src}
-      alt="Beispiel für Antworten in Grün und Orange"
-      caption="Beispiel für Antworten: Grüne Häuser sind OK; Orange Häuser müssen geprüft werden. In Crowdmap würdest du die ganze Kachel grün oder orange markieren."
-    />
-  </ProseSection>
 </LayoutArticle>
