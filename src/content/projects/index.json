@@ -1,0 +1,124 @@
+{
+  "projects": [
+    {
+      "name": {
+        "name": "OpenStreetMap Berlin",
+        "slug": "root"
+      },
+      "enabled": true,
+      "header": "AboutHeader",
+      "menus": [],
+      "menuNews": true,
+      "additionalFooterLinks": [],
+      "meta": {
+        "title": "OpenStreetMap Berlin",
+        "description": "Projekte der OSM Berlin Community die das Potential von offenen, collaborativen Geodaten zeigen.",
+        "image": "/src/content/projects/projects/0/meta/image.png",
+        "imageAlt": "OpenStreetMap Berlin Community",
+        "language": "de"
+      }
+    },
+    {
+      "name": {
+        "name": "Straßenraumkarte Neukölln",
+        "slug": "strassenraumkarte"
+      },
+      "enabled": true,
+      "externalProjektPage": "https://strassenraumkarte.osm-berlin.org/",
+      "header": "ProjectHeader",
+      "menus": [],
+      "menuNews": false,
+      "additionalFooterLinks": [],
+      "meta": {
+        "title": "OSM Straßenraumkarte — OpenStreetMap Verkehrswende",
+        "description": "Spezialkarten für Neukölln zum Straßenraum.",
+        "image": "/src/content/projects/projects/1/meta/image.png",
+        "imageAlt": "Detaillierte Darstellung des Straßenraumes auf Basis von OpenStreetMap.",
+        "language": "de"
+      }
+    },
+    {
+      "name": {
+        "name": "Spielplatzkarte",
+        "slug": "spielplatzkarte"
+      },
+      "enabled": true,
+      "header": "ProjectHeader",
+      "menus": [
+        {
+          "items": [
+            {
+              "label": "Über das Projekt",
+              "href": "/spielplatzkarte/"
+            },
+            {
+              "label": "Karte",
+              "href": "/spielplatzkarte/karte"
+            },
+            {
+              "label": "Karte in neuem Fenster",
+              "href": "https://osmbln.uber.space/spielplatzkarte/"
+            },
+            {
+              "label": "Daten verbessern",
+              "href": "/spielplatzkarte/datenqualitaet"
+            }
+          ]
+        }
+      ],
+      "menuNews": true,
+      "additionalFooterLinks": [],
+      "meta": {
+        "title": "Spielplatzkarte Berlin",
+        "description": "Eine freie und interaktive Web-Karte zur digitalen Erkundung von Spielplätzen und Spielgeräten in Berlin",
+        "image": "/src/content/projects/projects/2/meta/image.png",
+        "imageAlt": "Beispiel eines Spielplatzes in Neukölln in dem Spielgeräte mit Attributen zu sehen sind.",
+        "language": "de"
+      }
+    },
+    {
+      "name": {
+        "name": "Crowdmap",
+        "slug": "crowdmap"
+      },
+      "enabled": true,
+      "header": "ProjectHeader",
+      "menus": [
+        {
+          "items": [
+            {
+              "label": "Über das Projekt",
+              "href": "/crowdmap/"
+            }
+          ]
+        }
+      ],
+      "menuNews": true,
+      "additionalFooterLinks": [],
+      "meta": {
+        "title": "Crowdmap-Experiment zur Prüfung von Gebäude Daten in Berlin",
+        "description": "Ein Projekt um die Datenqualität von Geäbuden in OSM für Berlin zu prüfen und zu verbessern.",
+        "image": "/src/content/projects/projects/3/meta/image.png",
+        "imageAlt": "Luftbild mit OSM Gebäudedaten und Angaben zur Validierung der Gebäude.",
+        "language": "de"
+      }
+    },
+    {
+      "name": {
+        "name": "(FALLBACK)",
+        "slug": "unknown"
+      },
+      "enabled": false,
+      "header": "AboutHeader",
+      "menus": [],
+      "menuNews": true,
+      "additionalFooterLinks": [],
+      "meta": {
+        "title": "OpenStreetMap Verkehrswende",
+        "image": "/src/content/projects/projects/4/meta/image.png",
+        "imageAlt": "OpenStreetMap Verkehrswende Community",
+        "language": "de"
+      }
+    }
+  ]
+}

@@ -1,21 +1,38 @@
 ---
+import Link from 'astro-heroicons/solid/Link.astro'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
+  id?: string | undefined
   highlight?: boolean | undefined
   classes?: string | undefined
 }
 
-const { highlight, classes } = Astro.props
+const { id, highlight, classes } = Astro.props
 ---
 
 <section
+  id={id}
   class={twMerge(
-    'prose prose-lg prose-orange max-w-prose mb-20',
-    'prose-headings:text-orange-700 prose-headings:mb-5',
-    highlight ? 'notice bg-amber-100' : '',
+    'group relative mb-20 rounded',
+    'prose prose-lg prose-orange max-w-prose',
+    'prose-headings:mb-5 prose-headings:text-orange-700 prose-headings:first:mt-0',
+    // 'prose-p:m-0',
+    highlight ? 'bg-amber-100 p-4' : '',
+    id ? 'target:bg-purple-100' : '',
     classes,
   )}
 >
   <slot />
+  {
+    id && (
+      <a
+        href={`#${id}`}
+        title="Link zu diesem Absatz"
+        class="opacity-0 transition-opacity hover:text-blue-950 group-hover:opacity-70"
+      >
+        <Link class="absolute right-1 top-1 size-4" />
+      </a>
+    )
+  }
 </section>

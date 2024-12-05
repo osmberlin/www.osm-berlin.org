@@ -8,7 +8,7 @@ const sortedPosts = allPosts.sort(
 )
 ---
 
-<LayoutArticlePageAstro title="Alle Blogposts" menuHighlight="posts" noindex={true}>
+<LayoutArticlePageAstro title="Alle Blogposts" noindex={true}>
   <header class="mb-20">
     <h1>Alle Blogposts aller Projekte ({sortedPosts.length})</h1>
   </header>
@@ -32,7 +32,7 @@ const sortedPosts = allPosts.sort(
               </td>
               <td class="uppercase">{post.data.project}</td>
               <td>
-                <a href={`/${post.data.project}/posts/${post.slug}`}>{post.data.title}</a>
+                <a href={`/${post.data.project}/posts/${post.id}`}>{post.data.title}</a>
               </td>
               <td>{post.data.author}</td>
             </tr>

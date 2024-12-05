@@ -1,23 +1,26 @@
 ---
+export const prerender = true
+
 import LayoutArticlePost from '@layouts/LayoutArticlePost.astro'
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import { mdxComponentsAstro } from 'keystatic/components/mdxComponentsAstro.astro'
 
 export async function getStaticPaths() {
-  const project = 'spielplatzkarte' // REMINDER: this needs to be change for each project and added to `src/projectsConfig.const.ts`
+  const project = 'spielplatzkarte' // REMINDER: this needs to be change for each project
   const posts = await getCollection('posts')
   return posts
     .filter((post) => post.data.project === project)
     .map((post) => ({
-      params: { slug: post.slug },
+      params: { slug: post.id },
       props: post,
     }))
 }
 type Props = CollectionEntry<'posts'>
 
 const post = Astro.props
-const { Content } = await post.render()
+const { Content } = await render(post)
 ---
 
 <LayoutArticlePost {...post.data}>
-  <Content />
+  <Content components={mdxComponentsAstro} />
 </LayoutArticlePost>

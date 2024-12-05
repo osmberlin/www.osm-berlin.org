@@ -2,11 +2,18 @@
 import Card from '@components/text/Card.astro'
 import CardWrapper from '@components/text/CardWrapper.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
-import CalendarDays from 'astro-heroicons/solid/CalendarDays.astro'
+import { getProjects } from '@layouts/utils/getProjects'
+import { getRootUrl } from '@layouts/utils/getRootUrl'
 import BookOpen from 'astro-heroicons/outline/BookOpen.astro'
 import Cube from 'astro-heroicons/outline/Cube.astro'
 import QueueList from 'astro-heroicons/outline/QueueList.astro'
-import { projectConfigs } from 'src/projectConfigs.const'
+import CalendarDays from 'astro-heroicons/solid/CalendarDays.astro'
+import pngSocialSharingFallback from '../../public/social-sharing.png'
+
+const projects = await getProjects()
+const showcaseProjects = projects
+  ?.filter((p) => p.name.slug !== 'root')
+  ?.filter((p) => p.enabled === true)
 ---
 
 <LayoutArticlePageAstro title="OpenStreetMap Berlin">
@@ -30,7 +37,7 @@ import { projectConfigs } from 'src/projectConfigs.const'
     </Card>
     <Card
       external
-      href="https://wiki.openstreetmap.org/wiki/Berlin"
+      href="https://wiki.openstreetmap.org/wiki/Berlin/Stammtisch"
       text="Zum Stammtisch…"
       alt="OSM Berlin Stammtisch"
     >
@@ -38,30 +45,25 @@ import { projectConfigs } from 'src/projectConfigs.const'
     </Card>
   </CardWrapper>
 
-  <CardWrapper headline="Ausgewählte Projekte">
+  <CardWrapper headline="Ausgewählte Projekte" sectionClasses="mt-20">
     {
-      Object.entries(projectConfigs).map(([_projectKey, projectValues]) => {
-        if (!projectValues.enabled) return null
-        if (!projectValues.name) return null
-
+      showcaseProjects?.map((project) => {
         return (
           <Card
-            href={projectValues.root}
-            text={projectValues.name}
-            alt={projectValues.meta?.description}
+            href={getRootUrl(project)}
+            text={project.name.name}
+            alt={project.meta?.description}
+            image={project.meta.image || pngSocialSharingFallback}
+            variant="iconImageGrid"
           >
-            {projectValues.meta ? (
-              <img src={projectValues.meta.imagePath} class="m-0 -mt-5 overflow-clip rounded-t" />
-            ) : (
-              <Cube class="size-10" />
-            )}
+            <Cube class="size-14" />
           </Card>
         )
       })
     }
   </CardWrapper>
 
-  <CardWrapper classes="mt-10" headline="Siehe auch">
+  <CardWrapper headline="Siehe auch" sectionClasses="mb-20 mt-20">
     <p class="col-span-2 my-0">
       Viele Projekte der OSM Verkehrswende Gruppe nutzen Berlin als Pilotregion.
     </p>

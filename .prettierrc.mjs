@@ -8,6 +8,7 @@ export default {
     'prettier-plugin-astro',
     'prettier-plugin-organize-imports',
     'prettier-plugin-tailwindcss',
+    'prettier-plugin-astro-organize-imports',
   ],
   overrides: [
     {
@@ -17,6 +18,6 @@ export default {
       },
     },
   ],
-  tailwindFunctions: ['clsx'],
-  tailwindAttributes: ['className', 'class:list', 'class'],
+  tailwindFunctions: ['clsx', 'twMerge', 'twJoin'],
+  tailwindAttributes: ['className', 'class:list', 'class', 'sectionClasses'],
 }
