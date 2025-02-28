@@ -15,7 +15,7 @@ export default config({
   ui: {
     brand: {
       name: 'OSM',
-      // mark: () => <img src="/logo.png" height={27} />,
+      mark: () => <img src="/public/osm-berlin-logo-2025.png" height={27} />,
     },
     navigation: {
       Meta: ['projects'],
