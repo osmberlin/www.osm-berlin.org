@@ -7,8 +7,6 @@ import { proseBase, proseHeadings } from './baseStyles'
 export type Props = CollectionEntry<'posts'>['data']
 
 const { title, noindex, language, pubDate, updatedDate, author } = Astro.props
-
-console.log('xx', Astro.props)
 ---
 
 <LayoutArticle title={title} noindex={noindex}>

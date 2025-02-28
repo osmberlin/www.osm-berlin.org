@@ -17,19 +17,6 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<'posts'>
 
-const project = 'crowdmap' // REMINDER: this needs to be change for each project
-const posts = await getCollection('posts')
-console.log(
-  'yyyy',
-  posts
-    .filter((post) => post.data.project === project)
-    .map((post) => ({
-      params: { slug: post.id },
-      props: post,
-    })),
-)
-console.log('xxx', Astro.props)
-
 const post = Astro.props
 const { Content } = await render(post)
 ---
