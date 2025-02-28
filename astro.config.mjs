@@ -68,7 +68,7 @@ export default defineConfig({
   env: {
     schema: {
       ASTRO_OUTPUT_MODE: envField.enum({
-        values: ['static', 'hybrid', 'server'],
+        values: ['static', 'server'],
         access: 'secret',
         context: 'server',
         optional: false,
