@@ -29,10 +29,12 @@ type Props = {
   initialViewState: MapInitialViewState
   interactiveLayerIds: string[]
   boxZoom?: boolean
+  onMouseMove?: (event: any) => void
+  onMouseLeave?: () => void
   children: React.ReactNode
 }
 
-export const BaseMap = ({ initialViewState, interactiveLayerIds, boxZoom, children }: Props) => {
+export const BaseMap = ({ initialViewState, interactiveLayerIds, boxZoom, onMouseMove, onMouseLeave, children }: Props) => {
   useEffect(() => {
     const protocol = new pmtiles.Protocol()
     maplibregl.addProtocol('pmtiles', protocol.tile)
@@ -87,7 +89,11 @@ export const BaseMap = ({ initialViewState, interactiveLayerIds, boxZoom, childr
       interactiveLayerIds={interactiveLayerIds}
       cursor={cursorStyle}
       onMouseEnter={() => setCursorStyle('pointer')}
-      onMouseLeave={() => setCursorStyle('grab')}
+      onMouseLeave={() => {
+        setCursorStyle('grab')
+        onMouseLeave?.()
+      }}
+      onMouseMove={onMouseMove}
       onClick={(event) => $clickedMapData.set(event.features)}
     >
       {children}

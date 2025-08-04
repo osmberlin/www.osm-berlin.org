@@ -1,0 +1,35 @@
+---
+import Card from '@components/text/Card.astro'
+import CardWrapper from '@components/text/CardWrapper.astro'
+import ProjectHeadline from '@components/text/ProjectHeadline.astro'
+import ProseSection from '@components/text/ProseSection.astro'
+import LayoutArticle from '@layouts/LayoutArticle.astro'
+import Map from 'astro-heroicons/outline/Map.astro'
+---
+
+<LayoutArticle title="Berliner Straßenbrunnen – OpenData mit OpenStreetMap">
+  <ProjectHeadline title="Straßenbrunnen" subtitle="Berliner Straßenbrunnen" />
+
+  <CardWrapper classes="sm:grid-cols-1" sectionClasses="mb-3">
+    <Card href="/strassenbrunnen/karte" text="Zur Karte…">
+      <Map class="size-10" />
+    </Card>
+  </CardWrapper>
+
+  <ProseSection highlight>
+    <p>
+      Straßenbrunnen in Berlin. Gepflegt von der OpenStreetMap Community Berlin. Klicke auf einen Brunnen in der Karte, um Details zu sehen und den Status zu bearbeiten.
+    </p>
+
+    <p>
+      Diese Daten werden unter anderem auf <a
+        href="https://www.giessdenkiez.de/map?isPumpsVisible=true"
+        target="_blank">Gieß den Kiez</a
+      > verwendet.
+    </p>
+
+    <p>
+      Vielen Dank an alle, die mithelfen die Daten in OpenStreetMap aktuell zu halten.
+    </p>
+  </ProseSection>
+</LayoutArticle>

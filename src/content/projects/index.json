@@ -105,6 +105,37 @@
     },
     {
       "name": {
+        "name": "Straßenbrunnen",
+        "slug": "strassenbrunnen"
+      },
+      "enabled": true,
+      "header": "ProjectHeader",
+      "menus": [
+        {
+          "items": [
+            {
+              "label": "Über das Projekt",
+              "href": "/strassenbrunnen/"
+            },
+            {
+              "label": "Karte",
+              "href": "/strassenbrunnen/karte"
+            }
+          ]
+        }
+      ],
+      "menuNews": false,
+      "additionalFooterLinks": [],
+      "meta": {
+        "title": "Straßenbrunnen Berlin",
+        "description": "Berliner Straßenbrunnen auf der Karte - gepflegt von der OpenStreetMap Community Berlin",
+        "image": "/src/content/projects/projects/4/meta/image.png",
+        "imageAlt": "Straßenbrunnen in Berlin auf einer interaktiven Karte",
+        "language": "de"
+      }
+    },
+    {
+      "name": {
         "name": "(FALLBACK)",
         "slug": "unknown"
       },

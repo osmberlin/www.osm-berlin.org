@@ -6,5 +6,6 @@ export const extractedProjectKeys = [
   'strassenraumkarte',
   'spielplatzkarte',
   'crowdmap',
+  'strassenbrunnen',
   'unknown',
 ] as const
