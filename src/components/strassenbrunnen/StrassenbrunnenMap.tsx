@@ -172,7 +172,7 @@ const StrassenbrunnenMapInner = () => {
   }
 
   const handleMouseLeave = () => {
-    if(!mainMap) return
+    if (!mainMap) return
     // Clear all hover states
     hoveredFeatures.current.forEach((f) => {
       if (f.id !== undefined) {
@@ -196,7 +196,7 @@ const StrassenbrunnenMapInner = () => {
       )}
 
       <BaseMap
-        id='mainMap'
+        id="mainMap"
         initialViewState={initialViewState}
         interactiveLayerIds={['strassenbrunnen-points-background']}
         onMouseMove={handleMouseMove}

@@ -16,7 +16,7 @@ type StrassenbrunnenFeature = {
     drinking_water?: string
     'pump:status'?: string
     'pump:style'?: string
-    'check_date'?: string
+    check_date?: string
     [key: string]: any
   }
 }
@@ -60,7 +60,7 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
       ref: 'Referenz',
       'pump:status': 'Pumpen Status',
       'pump:style': 'Pumpen Stil',
-      'check_date': 'Prüfdatum',
+      check_date: 'Prüfdatum',
       wikimedia_commons: 'Wikimedia Commons',
       image: 'Bild',
       wikipedia: 'Wikipedia',

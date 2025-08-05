@@ -26,7 +26,7 @@ export type MapInitialViewState = BaseMapSeachparamsObject & {
 }
 
 type Props = {
-  id:string
+  id: string
   initialViewState: MapInitialViewState
   interactiveLayerIds: string[]
   boxZoom?: boolean

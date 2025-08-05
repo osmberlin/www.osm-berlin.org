@@ -81,16 +81,10 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
           ],
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 2,
-          'circle-opacity':[
-            'case',
-            ['boolean', ['feature-state', 'hover'], false],
-            0.95,
-            0.6,
-          ],
+          'circle-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.95, 0.6],
         }}
         filter={['!=', ['get', 'id'], selectedFeatureId || '']}
       />
-
 
       {/* Selected/highlight layer */}
       <Layer
