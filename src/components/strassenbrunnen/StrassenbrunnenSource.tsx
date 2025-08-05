@@ -29,7 +29,7 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
 
   const geojson = {
     type: 'FeatureCollection' as const,
-    features: features
+    features: features,
   }
 
   return (
@@ -43,7 +43,7 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
           'circle-color': '#3182ce',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 2,
-          'circle-opacity': 0.8
+          'circle-opacity': 0.8,
         }}
       />
 
@@ -56,7 +56,7 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
           'circle-color': '#2563eb',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 3,
-          'circle-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0]
+          'circle-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
         }}
       />
 
@@ -69,9 +69,13 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
           'circle-color': '#1d4ed8',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 4,
-          'circle-opacity': selectedFeatureId ? 1 : 0
+          'circle-opacity': selectedFeatureId ? 1 : 0,
         }}
-        filter={selectedFeatureId ? ['==', ['get', 'id'], selectedFeatureId] : ['==', ['get', 'id'], ['literal', '']]}
+        filter={
+          selectedFeatureId
+            ? ['==', ['get', 'id'], selectedFeatureId]
+            : ['==', ['get', 'id'], ['literal', '']]
+        }
       />
 
       <Layer
@@ -84,12 +88,12 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
           'text-offset': [0, -1.5],
           'text-anchor': 'bottom',
           'text-allow-overlap': false,
-          'text-ignore-placement': false
+          'text-ignore-placement': false,
         }}
         paint={{
           'text-color': '#1f2937',
           'text-halo-color': '#ffffff',
-          'text-halo-width': 1
+          'text-halo-width': 1,
         }}
       />
     </Source>

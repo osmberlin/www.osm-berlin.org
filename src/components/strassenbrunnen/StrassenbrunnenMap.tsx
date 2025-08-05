@@ -1,10 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
-import { useState, useEffect, useRef } from 'react'
 import { useStore } from '@nanostores/react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
+import { useEffect, useRef, useState } from 'react'
+import { type MapGeoJSONFeature, type MapLayerMouseEvent, useMap } from 'react-map-gl/maplibre'
 import { BaseMap, type MapInitialViewState } from '../BaseMap/BaseMap'
 import { $clickedMapData, $searchParams } from '../BaseMap/store'
-import { type MapGeoJSONFeature, type MapLayerMouseEvent, useMap } from 'react-map-gl/maplibre'
 import { StrassenbrunnenSidebar } from './StrassenbrunnenSidebar'
 import { StrassenbrunnenSource } from './StrassenbrunnenSource'
 
@@ -60,19 +59,21 @@ const fetchStrassenbrunnen = async (): Promise<StrassenbrunnenFeature[]> => {
     out geom;
   `
 
-  const response = await fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`)
+  const response = await fetch(
+    `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`,
+  )
   const data: OverpassResponse = await response.json()
 
-  return data.elements.map(element => ({
+  return data.elements.map((element) => ({
     type: 'Feature' as const,
     geometry: {
       type: 'Point' as const,
-      coordinates: [element.lon, element.lat]
+      coordinates: [element.lon, element.lat],
     },
     properties: {
       id: element.id.toString(),
-      ...element.tags
-    }
+      ...element.tags,
+    },
   }))
 }
 
@@ -86,19 +87,19 @@ const StrassenbrunnenMapInner = () => {
     queryKey: ['strassenbrunnen'],
     queryFn: fetchStrassenbrunnen,
     staleTime: Infinity,
-    gcTime: Infinity
+    gcTime: Infinity,
   })
 
   const initialViewState: MapInitialViewState = {
-    longitude: 13.388860,
+    longitude: 13.38886,
     latitude: 52.517037,
     zoom: 11,
     maxBounds: [
       [13.0, 52.3], // southwest
-      [13.8, 52.8]  // northeast
+      [13.8, 52.8], // northeast
     ],
     minZoom: 9,
-    maxZoom: 18
+    maxZoom: 18,
   }
 
   // Update URL when feature is selected
@@ -123,7 +124,7 @@ const StrassenbrunnenMapInner = () => {
   // Show selected feature on page load if URL contains selected ID
   useEffect(() => {
     if (features && searchParams.selected && !selectedFeature) {
-      const feature = features.find(f => f.properties.id === searchParams.selected)
+      const feature = features.find((f) => f.properties.id === searchParams.selected)
       if (feature) {
         setSelectedFeature(feature)
       }
@@ -167,7 +168,7 @@ const StrassenbrunnenMapInner = () => {
   }
 
   return (
-    <div className="h-full w-full relative">
+    <div className="relative h-full w-full">
       <BaseMap
         initialViewState={initialViewState}
         interactiveLayerIds={['strassenbrunnen-points']}
@@ -181,10 +182,7 @@ const StrassenbrunnenMapInner = () => {
         />
       </BaseMap>
 
-      <StrassenbrunnenSidebar
-        feature={selectedFeature}
-        onClose={handleSidebarClose}
-      />
+      <StrassenbrunnenSidebar feature={selectedFeature} onClose={handleSidebarClose} />
     </div>
   )
 }

@@ -35,7 +35,8 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
       z: '18',
       lat: lat.toString(),
       lon: lon.toString(),
-      userlayout: 'https://studio.mapcomplete.org/11881/themes/berlin_emergency_water_pumps/berlin_emergency_water_pumps.json'
+      userlayout:
+        'https://studio.mapcomplete.org/11881/themes/berlin_emergency_water_pumps/berlin_emergency_water_pumps.json',
     })
     return `${baseUrl}?${params.toString()}#about_theme`
   }
@@ -56,12 +57,12 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
       ref: 'Referenz',
       wikimedia_commons: 'Wikimedia Commons',
       image: 'Bild',
-      wikipedia: 'Wikipedia'
+      wikipedia: 'Wikipedia',
     }
 
     return {
       label: labels[key] || key,
-      value: value
+      value: value,
     }
   }
 
@@ -97,25 +98,32 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
     return null
   }
 
-  const relevantProperties = ['name', 'description', 'operator', 'start_date', 'access', 'drinking_water', 'network', 'ref']
+  const relevantProperties = [
+    'name',
+    'description',
+    'operator',
+    'start_date',
+    'access',
+    'drinking_water',
+    'network',
+    'ref',
+  ]
   const displayProperties = relevantProperties
-    .filter(key => properties[key])
-    .map(key => formatProperty(key, properties[key]))
+    .filter((key) => properties[key])
+    .map((key) => formatProperty(key, properties[key]))
 
   const imageUrl = getWikimediaCommonsImage()
   const wikimediaCommonsProperty = getWikimediaCommonsProperty()
   const wikipediaUrl = getWikipediaUrl()
 
   return (
-    <div className="absolute top-0 right-0 h-full w-96 bg-white shadow-lg border-l border-gray-200 overflow-y-auto">
+    <div className="absolute top-0 right-0 h-full w-96 overflow-y-auto border-l border-gray-200 bg-white shadow-lg">
       <div className="p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-900">
-            Straßenbrunnen Details
-          </h2>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-semibold text-gray-900">Straßenbrunnen Details</h2>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+            className="p-2 text-gray-400 transition-colors hover:text-gray-600"
           >
             <XMarkIcon className="h-5 w-5" />
           </button>
@@ -124,14 +132,14 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
         <div className="space-y-4">
           {imageUrl && (
             <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <h3 className="mb-2 text-sm font-medium tracking-wide text-gray-500 uppercase">
                 Bild
               </h3>
-              <div className="relative bg-gray-100 border border-gray-200 rounded-md p-2">
+              <div className="relative rounded-md border border-gray-200 bg-gray-100 p-2">
                 <img
                   src={imageUrl}
                   alt={`Straßenbrunnen ${properties.name || properties.id}`}
-                  className="w-full max-h-48 object-contain rounded"
+                  className="max-h-48 w-full rounded object-contain"
                   onError={(e) => {
                     // Hide image if it fails to load
                     e.currentTarget.style.display = 'none'
@@ -141,7 +149,7 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
                   href={`https://commons.wikimedia.org/wiki/${encodeURIComponent(wikimediaCommonsProperty)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded hover:bg-opacity-70 transition-colors"
+                  className="bg-opacity-50 hover:bg-opacity-70 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-xs text-white transition-colors"
                 >
                   Wikimedia Commons
                 </a>
@@ -151,7 +159,7 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
 
           {displayProperties.length > 0 && (
             <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
+              <h3 className="mb-2 text-sm font-medium tracking-wide text-gray-500 uppercase">
                 Eigenschaften
               </h3>
               <dl className="space-y-2">
@@ -165,18 +173,14 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
             </div>
           )}
 
-
-
           <div className="space-y-2">
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-              Aktionen
-            </h3>
+            <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">Aktionen</h3>
             <div className="space-y-2">
               <a
                 href={getMapCompleteEditUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+                className="block w-full rounded-md border border-blue-600 bg-blue-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
               >
                 In MapComplete bearbeiten
               </a>
@@ -184,7 +188,7 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
                 href={getOsmUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full px-3 py-2 text-sm font-medium text-gray-700 bg-gray-50 border border-gray-200 rounded-md hover:bg-gray-100 transition-colors"
+                className="block w-full rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
               >
                 In OpenStreetMap anzeigen
               </a>
@@ -193,7 +197,7 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
                   href={wikipediaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full px-3 py-2 text-sm font-medium text-gray-700 bg-gray-50 border border-gray-200 rounded-md hover:bg-gray-100 transition-colors"
+                  className="block w-full rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
                 >
                   Wikipedia Artikel
                 </a>

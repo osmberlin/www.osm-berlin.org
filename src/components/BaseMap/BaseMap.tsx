@@ -34,7 +34,14 @@ type Props = {
   children: React.ReactNode
 }
 
-export const BaseMap = ({ initialViewState, interactiveLayerIds, boxZoom, onMouseMove, onMouseLeave, children }: Props) => {
+export const BaseMap = ({
+  initialViewState,
+  interactiveLayerIds,
+  boxZoom,
+  onMouseMove,
+  onMouseLeave,
+  children,
+}: Props) => {
   useEffect(() => {
     const protocol = new pmtiles.Protocol()
     maplibregl.addProtocol('pmtiles', protocol.tile)
