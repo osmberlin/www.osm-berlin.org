@@ -42,13 +42,29 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
       <AddMapImage name="pumpe-borsig" url="/icons/strassenbrunnen/pumpe_Borsig.png" sdf={false} />
       <AddMapImage name="pumpe-fsh-l" url="/icons/strassenbrunnen/pumpe_FSH-L.png" sdf={false} />
       <AddMapImage name="pumpe-krause" url="/icons/strassenbrunnen/pumpe_Krause.png" sdf={false} />
-      <AddMapImage name="pumpe-lauchhammer" url="/icons/strassenbrunnen/pumpe_Lauchhammer.png" sdf={false} />
-      <AddMapImage name="pumpe-neue-krause" url="/icons/strassenbrunnen/pumpe_Neue_Krause.png" sdf={false} />
+      <AddMapImage
+        name="pumpe-lauchhammer"
+        url="/icons/strassenbrunnen/pumpe_Lauchhammer.png"
+        sdf={false}
+      />
+      <AddMapImage
+        name="pumpe-neue-krause"
+        url="/icons/strassenbrunnen/pumpe_Neue_Krause.png"
+        sdf={false}
+      />
       <AddMapImage name="pumpe-pankow" url="/icons/strassenbrunnen/pumpe_Pankow.png" sdf={false} />
-      <AddMapImage name="pumpe-ruemmler" url="/icons/strassenbrunnen/pumpe_Rümmler.png" sdf={false} />
+      <AddMapImage
+        name="pumpe-ruemmler"
+        url="/icons/strassenbrunnen/pumpe_Rümmler.png"
+        sdf={false}
+      />
       <AddMapImage name="pumpe-wolf" url="/icons/strassenbrunnen/pumpe_Wolf.png" sdf={false} />
       <AddMapImage name="pumpe-wolf-2" url="/icons/strassenbrunnen/pumpe_Wolf_2.png" sdf={false} />
-      <AddMapImage name="pumpe-historic" url="/icons/strassenbrunnen/pumpe_historic.png" sdf={false} />
+      <AddMapImage
+        name="pumpe-historic"
+        url="/icons/strassenbrunnen/pumpe_historic.png"
+        sdf={false}
+      />
       <AddMapImage name="pumpe-modern" url="/icons/strassenbrunnen/pumpe_modern.png" sdf={false} />
 
       {/* Small circle for hover/click target */}
@@ -62,6 +78,7 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
           'circle-stroke-width': 2,
           'circle-opacity': 0.6,
         }}
+        filter={['!=', ['get', 'id'], selectedFeatureId || '']}
       />
 
       {/* Hover layer using feature state */}
@@ -70,10 +87,20 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
         type="circle"
         paint={{
           'circle-radius': 24,
-          'circle-color': '#2563eb',
-          'circle-stroke-color': '#ffffff',
+          'circle-color': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            '#2563eb',
+            'transparent',
+          ],
+          'circle-stroke-color': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            '#ffffff',
+            'transparent',
+          ],
           'circle-stroke-width': 3,
-          'circle-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0],
+          'circle-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.7, 0],
         }}
       />
 
@@ -86,42 +113,46 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
           'circle-color': '#1d4ed8',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 4,
-          'circle-opacity': selectedFeatureId ? 1 : 0,
+          'circle-opacity': selectedFeatureId ? 0.6 : 0,
         }}
-        filter={
-          selectedFeatureId
-            ? ['==', ['get', 'id'], selectedFeatureId]
-            : ['==', ['get', 'id'], ['literal', '']]
-        }
+        filter={['==', ['get', 'id'], selectedFeatureId || '']}
       />
       {/* Pump style icons layer */}
       <Layer
         id="strassenbrunnen-points-icons"
         type="symbol"
-                  layout={{
-            'icon-image': [
-              'case',
-              ['==', ['get', 'pump:style'], 'Borsig'], 'pumpe-borsig',
-              ['==', ['get', 'pump:style'], 'FSH-L'], 'pumpe-fsh-l',
-              ['==', ['get', 'pump:style'], 'Krause'], 'pumpe-krause',
-              ['==', ['get', 'pump:style'], 'Lauchhammer'], 'pumpe-lauchhammer',
-              ['==', ['get', 'pump:style'], 'Neue Krause'], 'pumpe-neue-krause',
-              ['==', ['get', 'pump:style'], 'Pankow'], 'pumpe-pankow',
-              ['==', ['get', 'pump:style'], 'Rümmler'], 'pumpe-ruemmler',
-              ['==', ['get', 'pump:style'], 'Wolf'], 'pumpe-wolf',
-              ['==', ['get', 'pump:style'], 'Wolf 2'], 'pumpe-wolf-2',
-              ['==', ['get', 'pump:style'], 'historic'], 'pumpe-historic',
-              ['==', ['get', 'pump:style'], 'modern'], 'pumpe-modern',
-              'pumpe-default' // default for unknown style
-            ],
-            'icon-size': 0.1,
-            'icon-allow-overlap': true,
-            'icon-anchor': 'bottom',
-          }}
+        layout={{
+          'icon-image': [
+            'case',
+            ['==', ['get', 'pump:style'], 'Borsig'],
+            'pumpe-borsig',
+            ['==', ['get', 'pump:style'], 'FSH-L'],
+            'pumpe-fsh-l',
+            ['==', ['get', 'pump:style'], 'Krause'],
+            'pumpe-krause',
+            ['==', ['get', 'pump:style'], 'Lauchhammer'],
+            'pumpe-lauchhammer',
+            ['==', ['get', 'pump:style'], 'Neue Krause'],
+            'pumpe-neue-krause',
+            ['==', ['get', 'pump:style'], 'Pankow'],
+            'pumpe-pankow',
+            ['==', ['get', 'pump:style'], 'Rümmler'],
+            'pumpe-ruemmler',
+            ['==', ['get', 'pump:style'], 'Wolf'],
+            'pumpe-wolf',
+            ['==', ['get', 'pump:style'], 'Wolf 2'],
+            'pumpe-wolf-2',
+            ['==', ['get', 'pump:style'], 'historic'],
+            'pumpe-historic',
+            ['==', ['get', 'pump:style'], 'modern'],
+            'pumpe-modern',
+            'pumpe-default', // default for unknown style
+          ],
+          'icon-size': 0.1,
+          'icon-allow-overlap': true,
+          'icon-anchor': 'bottom',
+        }}
       />
-
-
-
     </Source>
   )
 }
