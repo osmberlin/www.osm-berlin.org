@@ -6,6 +6,7 @@ import { BaseMap, type MapInitialViewState } from '../BaseMap/BaseMap'
 import { $clickedMapData, $searchParams } from '../BaseMap/store'
 import { StrassenbrunnenSidebar } from './StrassenbrunnenSidebar'
 import { StrassenbrunnenSource } from './StrassenbrunnenSource'
+import { SmallSpinner } from '../Spinner/SmallSpinner'
 
 type StrassenbrunnenFeature = {
   type: 'Feature'
@@ -21,6 +22,9 @@ type StrassenbrunnenFeature = {
     start_date?: string
     access?: string
     drinking_water?: string
+    'pump:status'?: string
+    'pump:style'?: string
+    'check_date'?: string
     [key: string]: any
   }
 }
@@ -79,6 +83,7 @@ const fetchStrassenbrunnen = async (): Promise<StrassenbrunnenFeature[]> => {
 
 const StrassenbrunnenMapInner = () => {
   const [selectedFeature, setSelectedFeature] = useState<StrassenbrunnenFeature | null>(null)
+  const [mapLoaded, setMapLoaded] = useState(false)
   const clickedData = useStore($clickedMapData)
   const searchParams = useStore($searchParams)
   const { current: map } = useMap()
@@ -89,6 +94,10 @@ const StrassenbrunnenMapInner = () => {
     staleTime: Infinity,
     gcTime: Infinity,
   })
+
+  const handleMapLoad = () => {
+    setMapLoaded(true)
+  }
 
   const initialViewState: MapInitialViewState = {
     longitude: 13.38886,
@@ -167,13 +176,25 @@ const StrassenbrunnenMapInner = () => {
     hoveredFeatures.current = []
   }
 
+  const showLoading = isLoading || !mapLoaded
+
   return (
     <div className="relative h-full w-full">
+      {showLoading && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-75">
+          <div className="flex flex-col items-center space-y-4">
+            <SmallSpinner />
+            <p className="text-sm text-gray-600">Lade Straßenbrunnen Daten...</p>
+          </div>
+        </div>
+      )}
+
       <BaseMap
         initialViewState={initialViewState}
-        interactiveLayerIds={['strassenbrunnen-points']}
+        interactiveLayerIds={['strassenbrunnen-points-background']}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onLoad={handleMapLoad}
       >
         <StrassenbrunnenSource
           features={features || []}

@@ -31,6 +31,7 @@ type Props = {
   boxZoom?: boolean
   onMouseMove?: (event: any) => void
   onMouseLeave?: () => void
+  onLoad?: () => void
   children: React.ReactNode
 }
 
@@ -40,6 +41,7 @@ export const BaseMap = ({
   boxZoom,
   onMouseMove,
   onMouseLeave,
+  onLoad,
   children,
 }: Props) => {
   useEffect(() => {
@@ -89,7 +91,10 @@ export const BaseMap = ({
       boxZoom={boxZoom || true}
       // hash
       // Set map state for <MapData>:
-      onLoad={() => $mapLoaded.set(true)}
+      onLoad={() => {
+        $mapLoaded.set(true)
+        onLoad?.()
+      }}
       // MapLocation
       onMoveEnd={handleMoveEnd}
       // Handle cursor and click:

@@ -1,4 +1,5 @@
 import { Layer, Source } from 'react-map-gl/maplibre'
+import { AddMapImage } from './AddMapImage'
 
 type StrassenbrunnenFeature = {
   type: 'Feature'
@@ -14,6 +15,8 @@ type StrassenbrunnenFeature = {
     start_date?: string
     access?: string
     drinking_water?: string
+    pump_status?: string
+    pump_style?: string
     [key: string]: any
   }
 }
@@ -34,16 +37,30 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
 
   return (
     <Source id="strassenbrunnen" type="geojson" data={geojson}>
-      {/* Base layer */}
+      {/* Load pump style icons */}
+      <AddMapImage name="pumpe-default" url="/icons/strassenbrunnen/pumpe_.png" sdf={false} />
+      <AddMapImage name="pumpe-borsig" url="/icons/strassenbrunnen/pumpe_Borsig.png" sdf={false} />
+      <AddMapImage name="pumpe-fsh-l" url="/icons/strassenbrunnen/pumpe_FSH-L.png" sdf={false} />
+      <AddMapImage name="pumpe-krause" url="/icons/strassenbrunnen/pumpe_Krause.png" sdf={false} />
+      <AddMapImage name="pumpe-lauchhammer" url="/icons/strassenbrunnen/pumpe_Lauchhammer.png" sdf={false} />
+      <AddMapImage name="pumpe-neue-krause" url="/icons/strassenbrunnen/pumpe_Neue_Krause.png" sdf={false} />
+      <AddMapImage name="pumpe-pankow" url="/icons/strassenbrunnen/pumpe_Pankow.png" sdf={false} />
+      <AddMapImage name="pumpe-ruemmler" url="/icons/strassenbrunnen/pumpe_Rümmler.png" sdf={false} />
+      <AddMapImage name="pumpe-wolf" url="/icons/strassenbrunnen/pumpe_Wolf.png" sdf={false} />
+      <AddMapImage name="pumpe-wolf-2" url="/icons/strassenbrunnen/pumpe_Wolf_2.png" sdf={false} />
+      <AddMapImage name="pumpe-historic" url="/icons/strassenbrunnen/pumpe_historic.png" sdf={false} />
+      <AddMapImage name="pumpe-modern" url="/icons/strassenbrunnen/pumpe_modern.png" sdf={false} />
+
+      {/* Small circle for hover/click target */}
       <Layer
-        id="strassenbrunnen-points"
+        id="strassenbrunnen-points-background"
         type="circle"
         paint={{
-          'circle-radius': 6,
+          'circle-radius': 8,
           'circle-color': '#3182ce',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 2,
-          'circle-opacity': 0.8,
+          'circle-opacity': 0.6,
         }}
       />
 
@@ -52,7 +69,7 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
         id="strassenbrunnen-points-hover"
         type="circle"
         paint={{
-          'circle-radius': 8,
+          'circle-radius': 24,
           'circle-color': '#2563eb',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 3,
@@ -65,7 +82,7 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
         id="strassenbrunnen-points-selected"
         type="circle"
         paint={{
-          'circle-radius': 10,
+          'circle-radius': 20,
           'circle-color': '#1d4ed8',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 4,
@@ -77,25 +94,34 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
             : ['==', ['get', 'id'], ['literal', '']]
         }
       />
-
+      {/* Pump style icons layer */}
       <Layer
-        id="strassenbrunnen-labels"
+        id="strassenbrunnen-points-icons"
         type="symbol"
-        layout={{
-          'text-field': ['get', 'name'],
-          'text-font': ['Open Sans Regular'],
-          'text-size': 12,
-          'text-offset': [0, -1.5],
-          'text-anchor': 'bottom',
-          'text-allow-overlap': false,
-          'text-ignore-placement': false,
-        }}
-        paint={{
-          'text-color': '#1f2937',
-          'text-halo-color': '#ffffff',
-          'text-halo-width': 1,
-        }}
+                  layout={{
+            'icon-image': [
+              'case',
+              ['==', ['get', 'pump:style'], 'Borsig'], 'pumpe-borsig',
+              ['==', ['get', 'pump:style'], 'FSH-L'], 'pumpe-fsh-l',
+              ['==', ['get', 'pump:style'], 'Krause'], 'pumpe-krause',
+              ['==', ['get', 'pump:style'], 'Lauchhammer'], 'pumpe-lauchhammer',
+              ['==', ['get', 'pump:style'], 'Neue Krause'], 'pumpe-neue-krause',
+              ['==', ['get', 'pump:style'], 'Pankow'], 'pumpe-pankow',
+              ['==', ['get', 'pump:style'], 'Rümmler'], 'pumpe-ruemmler',
+              ['==', ['get', 'pump:style'], 'Wolf'], 'pumpe-wolf',
+              ['==', ['get', 'pump:style'], 'Wolf 2'], 'pumpe-wolf-2',
+              ['==', ['get', 'pump:style'], 'historic'], 'pumpe-historic',
+              ['==', ['get', 'pump:style'], 'modern'], 'pumpe-modern',
+              'pumpe-default' // default for unknown style
+            ],
+            'icon-size': 0.1,
+            'icon-allow-overlap': true,
+            'icon-anchor': 'bottom',
+          }}
       />
+
+
+
     </Source>
   )
 }

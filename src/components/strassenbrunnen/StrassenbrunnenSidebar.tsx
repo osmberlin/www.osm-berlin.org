@@ -14,6 +14,9 @@ type StrassenbrunnenFeature = {
     start_date?: string
     access?: string
     drinking_water?: string
+    'pump:status'?: string
+    'pump:style'?: string
+    'check_date'?: string
     [key: string]: any
   }
 }
@@ -55,6 +58,9 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
       drinking_water: 'Trinkwasser',
       network: 'Netzwerk',
       ref: 'Referenz',
+      'pump:status': 'Pumpen Status',
+      'pump:style': 'Pumpen Stil',
+      'check_date': 'Prüfdatum',
       wikimedia_commons: 'Wikimedia Commons',
       image: 'Bild',
       wikipedia: 'Wikipedia',
@@ -107,6 +113,9 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
     'drinking_water',
     'network',
     'ref',
+    'pump:status',
+    'pump:style',
+    'check_date',
   ]
   const displayProperties = relevantProperties
     .filter((key) => properties[key])
@@ -130,32 +139,61 @@ export const StrassenbrunnenSidebar = ({ feature, onClose }: Props) => {
         </div>
 
         <div className="space-y-4">
-          {imageUrl && (
-            <div>
-              <h3 className="mb-2 text-sm font-medium tracking-wide text-gray-500 uppercase">
-                Bild
-              </h3>
-              <div className="relative rounded-md border border-gray-200 bg-gray-100 p-2">
-                <img
-                  src={imageUrl}
-                  alt={`Straßenbrunnen ${properties.name || properties.id}`}
-                  className="max-h-48 w-full rounded object-contain"
-                  onError={(e) => {
-                    // Hide image if it fails to load
-                    e.currentTarget.style.display = 'none'
-                  }}
-                />
-                <a
-                  href={`https://commons.wikimedia.org/wiki/${encodeURIComponent(wikimediaCommonsProperty)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-opacity-50 hover:bg-opacity-70 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-xs text-white transition-colors"
-                >
-                  Wikimedia Commons
-                </a>
+          <div>
+            <h3 className="mb-2 text-sm font-medium tracking-wide text-gray-500 uppercase">
+              Bilder
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {/* Pump Icon */}
+              <div className="rounded-md border border-gray-200 bg-gray-100 p-2">
+                <div className="flex h-32 items-center justify-center">
+                  {properties['pump:style'] ? (
+                    <img
+                      src={`/icons/strassenbrunnen/pumpe_${properties['pump:style'].replace(/\s+/g, '_')}.png`}
+                      alt={`Pump style: ${properties['pump:style']}`}
+                      className="max-h-20 max-w-20 object-contain"
+                      onError={(e) => {
+                        // Fallback to default icon if specific style not found
+                        e.currentTarget.src = '/icons/strassenbrunnen/pumpe_.png'
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src="/icons/strassenbrunnen/pumpe_.png"
+                      alt="Default pump style"
+                      className="max-h-20 max-w-20 object-contain"
+                    />
+                  )}
+                </div>
+                <p className="mt-2 text-center text-xs text-gray-600">
+                  {properties['pump:style'] || 'Standard'}
+                </p>
               </div>
+
+              {/* Wikimedia Commons Image */}
+              {imageUrl && (
+                <div className="relative rounded-md border border-gray-200 bg-gray-100 p-2">
+                  <img
+                    src={imageUrl}
+                    alt={`Straßenbrunnen ${properties.name || properties.id}`}
+                    className="h-32 w-full rounded object-contain"
+                    onError={(e) => {
+                      // Hide image if it fails to load
+                      e.currentTarget.style.display = 'none'
+                    }}
+                  />
+                  <a
+                    href={`https://commons.wikimedia.org/wiki/${encodeURIComponent(wikimediaCommonsProperty)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-opacity-50 hover:bg-opacity-70 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-xs text-white transition-colors"
+                  >
+                    Wikimedia Commons
+                  </a>
+                </div>
+              )}
             </div>
-          )}
+          </div>
 
           {displayProperties.length > 0 && (
             <div>
