@@ -26,6 +26,7 @@ export type MapInitialViewState = BaseMapSeachparamsObject & {
 }
 
 type Props = {
+  id:string
   initialViewState: MapInitialViewState
   interactiveLayerIds: string[]
   boxZoom?: boolean
@@ -36,6 +37,7 @@ type Props = {
 }
 
 export const BaseMap = ({
+  id,
   initialViewState,
   interactiveLayerIds,
   boxZoom,
@@ -79,6 +81,7 @@ export const BaseMap = ({
 
   return (
     <Map
+      id={id}
       initialViewState={{
         ...initialViewState,
         zoom: latLngZoom.zoom || initialViewState.zoom,

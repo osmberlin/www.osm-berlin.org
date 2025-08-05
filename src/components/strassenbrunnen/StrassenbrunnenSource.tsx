@@ -36,7 +36,7 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
   }
 
   return (
-    <Source id="strassenbrunnen" type="geojson" data={geojson}>
+    <Source id="strassenbrunnen" type="geojson" data={geojson} promoteId="id">
       {/* Load pump style icons */}
       <AddMapImage name="pumpe-default" url="/icons/strassenbrunnen/pumpe_.png" sdf={false} />
       <AddMapImage name="pumpe-borsig" url="/icons/strassenbrunnen/pumpe_Borsig.png" sdf={false} />
@@ -73,50 +73,39 @@ export const StrassenbrunnenSource = ({ features, isLoading, selectedFeatureId }
         type="circle"
         paint={{
           'circle-radius': 8,
-          'circle-color': '#3182ce',
-          'circle-stroke-color': '#ffffff',
-          'circle-stroke-width': 2,
-          'circle-opacity': 0.6,
-        }}
-        filter={['!=', ['get', 'id'], selectedFeatureId || '']}
-      />
-
-      {/* Hover layer using feature state */}
-      <Layer
-        id="strassenbrunnen-points-hover"
-        type="circle"
-        paint={{
-          'circle-radius': 24,
           'circle-color': [
             'case',
             ['boolean', ['feature-state', 'hover'], false],
             '#2563eb',
-            'transparent',
+            '#3182ce',
           ],
-          'circle-stroke-color': [
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': 2,
+          'circle-opacity':[
             'case',
             ['boolean', ['feature-state', 'hover'], false],
-            '#ffffff',
-            'transparent',
+            0.95,
+            0.6,
           ],
-          'circle-stroke-width': 3,
-          'circle-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.7, 0],
         }}
+        filter={['!=', ['get', 'id'], selectedFeatureId || '']}
       />
+
 
       {/* Selected/highlight layer */}
       <Layer
         id="strassenbrunnen-points-selected"
         type="circle"
         paint={{
-          'circle-radius': 20,
+          'circle-radius': 14,
           'circle-color': '#1d4ed8',
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 4,
-          'circle-opacity': selectedFeatureId ? 0.6 : 0,
+          'circle-opacity': selectedFeatureId ? 0.8 : 0,
         }}
         filter={['==', ['get', 'id'], selectedFeatureId || '']}
       />
+
       {/* Pump style icons layer */}
       <Layer
         id="strassenbrunnen-points-icons"

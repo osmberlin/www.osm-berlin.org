@@ -1,12 +1,17 @@
 import { useStore } from '@nanostores/react'
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
-import { type MapGeoJSONFeature, type MapLayerMouseEvent, useMap } from 'react-map-gl/maplibre'
+import {
+  type MapGeoJSONFeature,
+  type MapLayerMouseEvent,
+  MapProvider,
+  useMap,
+} from 'react-map-gl/maplibre'
 import { BaseMap, type MapInitialViewState } from '../BaseMap/BaseMap'
 import { $clickedMapData, $searchParams } from '../BaseMap/store'
+import { SmallSpinner } from '../Spinner/SmallSpinner'
 import { StrassenbrunnenSidebar } from './StrassenbrunnenSidebar'
 import { StrassenbrunnenSource } from './StrassenbrunnenSource'
-import { SmallSpinner } from '../Spinner/SmallSpinner'
 
 type StrassenbrunnenFeature = {
   type: 'Feature'
@@ -24,7 +29,7 @@ type StrassenbrunnenFeature = {
     drinking_water?: string
     'pump:status'?: string
     'pump:style'?: string
-    'check_date'?: string
+    check_date?: string
     [key: string]: any
   }
 }
@@ -86,7 +91,6 @@ const StrassenbrunnenMapInner = () => {
   const [mapLoaded, setMapLoaded] = useState(false)
   const clickedData = useStore($clickedMapData)
   const searchParams = useStore($searchParams)
-  const { current: map } = useMap()
 
   const { data: features, isLoading } = useQuery({
     queryKey: ['strassenbrunnen'],
@@ -94,6 +98,8 @@ const StrassenbrunnenMapInner = () => {
     staleTime: Infinity,
     gcTime: Infinity,
   })
+
+  const { mainMap } = useMap()
 
   const handleMapLoad = () => {
     setMapLoaded(true)
@@ -146,20 +152,19 @@ const StrassenbrunnenMapInner = () => {
 
   const hoveredFeatures = useRef<MapGeoJSONFeature[]>([])
 
-  const handleMouseMove = ({ features }: MapLayerMouseEvent) => {
+  const handleMouseMove = ({ target: map, features }: MapLayerMouseEvent) => {
     const currentFeatures = features || []
-
     // Clear previous hover states
     hoveredFeatures.current.forEach((f) => {
       if (f.id !== undefined) {
-        map?.setFeatureState(f, { hover: false })
+        map.setFeatureState(f, { hover: false })
       }
     })
 
     // Set new hover states
     currentFeatures.forEach((f) => {
       if (f.id !== undefined) {
-        map?.setFeatureState(f, { hover: true })
+        map.setFeatureState(f, { hover: true })
       }
     })
 
@@ -167,10 +172,11 @@ const StrassenbrunnenMapInner = () => {
   }
 
   const handleMouseLeave = () => {
+    if(!mainMap) return
     // Clear all hover states
     hoveredFeatures.current.forEach((f) => {
       if (f.id !== undefined) {
-        map?.setFeatureState(f, { hover: false })
+        mainMap.setFeatureState(f, { hover: false })
       }
     })
     hoveredFeatures.current = []
@@ -181,7 +187,7 @@ const StrassenbrunnenMapInner = () => {
   return (
     <div className="relative h-full w-full">
       {showLoading && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-white bg-opacity-75">
+        <div className="bg-opacity-75 absolute inset-0 z-10 flex items-center justify-center bg-white">
           <div className="flex flex-col items-center space-y-4">
             <SmallSpinner />
             <p className="text-sm text-gray-600">Lade Straßenbrunnen Daten...</p>
@@ -190,6 +196,7 @@ const StrassenbrunnenMapInner = () => {
       )}
 
       <BaseMap
+        id='mainMap'
         initialViewState={initialViewState}
         interactiveLayerIds={['strassenbrunnen-points-background']}
         onMouseMove={handleMouseMove}
@@ -211,7 +218,9 @@ const StrassenbrunnenMapInner = () => {
 export const StrassenbrunnenMap = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <StrassenbrunnenMapInner />
+      <MapProvider>
+        <StrassenbrunnenMapInner />
+      </MapProvider>
     </QueryClientProvider>
   )
 }

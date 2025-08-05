@@ -15,6 +15,7 @@ type Props = {
 export const MapillaryMap = ({ maxBounds, minZoom, maxZoom }: Props) => {
   return (
     <BaseMap
+      id="mainMap"
       initialViewState={{
         longitude: 13.390386527027175,
         latitude: 52.5180225850377,
