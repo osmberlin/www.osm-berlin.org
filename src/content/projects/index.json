@@ -67,7 +67,12 @@
         }
       ],
       "menuNews": true,
-      "additionalFooterLinks": [],
+      "additionalFooterLinks": [
+        {
+          "label": "Github: Spielplatzkarte",
+          "href": "https://github.com/SupaplexOSM/spielplatzkarte"
+        }
+      ],
       "meta": {
         "title": "Spielplatzkarte Berlin",
         "description": "Eine freie und interaktive Web-Karte zur digitalen Erkundung von Spielplätzen und Spielgeräten in Berlin",
