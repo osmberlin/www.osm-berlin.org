@@ -44,10 +44,6 @@ export default defineConfig({
   redirects: {
     '/mapswipe': '/crowdmap',
   },
-  experimental: {
-    // https://docs.astro.build/en/reference/experimental-flags/svg/
-    svg: true,
-  },
   markdown: { remarkPlugins: [remarkToc] },
   vite: {
     ssr: { noExternal: ['route-snapper'] },
