@@ -34,7 +34,6 @@
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/ts-plugin": "^1.10.6",
-    "@aws-sdk/client-s3": "^3.980.0",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
     "@keystatic/astro": "^5.0.6",
@@ -59,6 +58,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.980.0",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
     "@total-typescript/ts-reset": "^0.6.1",
