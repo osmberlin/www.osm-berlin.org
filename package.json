@@ -75,5 +75,10 @@
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "vite-plugin-watch-and-run": "^1.7.5"
+  },
+  "overrides": {
+    "@keystatic/astro": {
+      "astro": "$astro"
+    }
   }
 }
