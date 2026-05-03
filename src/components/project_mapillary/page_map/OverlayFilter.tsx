@@ -19,7 +19,10 @@ export const OverlayFilter = () => {
     useState<SearchParamsMapillaryMap['anzeige']>('complete')
 
   const setSelected = (value: string) => {
-    $searchParams.open({ ...params, ...{ anzeige: value } })
+    $searchParams.open({
+      ...params,
+      anzeige: value,
+    })
     setLocalSelected(value as SearchParamsMapillaryMap['anzeige'])
   }
 
