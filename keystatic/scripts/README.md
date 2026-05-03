@@ -10,4 +10,4 @@ To work around, we create our own list of projectKeys:
 - **`watchProjectKeys`** debounces changes to **`src/content/projects/index.json`** and runs **`bun run extract-project-keys`**.
 - **`extract-project-keys`** (`extractProjectKeys.ts`) writes **`keystatic/extractedProjectKeys.ts`**.
 
-Run **`npm run extract-project-keys`** manually after editing projects when not using **`bun run dev`**.
+Run **`bun run extract-project-keys`** manually after editing projects when not using **`bun run dev`**.
