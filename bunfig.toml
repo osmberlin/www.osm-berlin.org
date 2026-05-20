@@ -1,0 +1,3 @@
+# Do not install package versions published within the last 5 days (432000 seconds).
+[install]
+minimumReleaseAge = 432000
