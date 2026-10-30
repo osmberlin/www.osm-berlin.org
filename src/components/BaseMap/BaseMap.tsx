@@ -1,5 +1,6 @@
 import { useStore } from '@nanostores/react'
-import maplibregl from 'maplibre-gl'
+import * as maplibregl from 'maplibre-gl'
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import * as pmtiles from 'pmtiles'
 import { useEffect, useState } from 'react'
@@ -15,6 +16,9 @@ import {
   type BaseMapSearchparams,
 } from './store'
 import { roundPositionForURL } from './utils/roundNumber'
+
+// maplibre-gl 6 needs an explicit worker URL, Vite does not emit the worker otherwise.
+maplibregl.setWorkerUrl(workerUrl)
 
 export type MapInitialViewState = BaseMapSeachparamsObject & {
   // https://maplibre.org/maplibre-gl-js/docs/API/classes/maplibregl.Map/#setmaxbounds

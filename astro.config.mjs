@@ -29,11 +29,7 @@ export default defineConfig({
   site: 'https://www.osm-berlin.org/',
   integrations: [
     ASTRO_OUTPUT_MODE === 'static' ? undefined : keystatic(),
-    react({
-      babel: {
-        plugins: [['babel-plugin-react-compiler', { target: '19' }]],
-      },
-    }),
+    react({ compiler: true }),
     mdx(),
     sitemap({
       filter: (page) => !page.endsWith('README/'),
