@@ -4,3 +4,5 @@
 
 [build.environment]
   NODE_VERSION = "24"
+  # Project-local node_modules on Netlify so the SSR function zip is complete (see bunfig.netlify.toml)
+  BUN_FLAGS = "--frozen-lockfile --config=bunfig.netlify.toml"
