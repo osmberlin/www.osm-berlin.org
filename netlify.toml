@@ -4,5 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "26"
+  # bun.lock is lockfileVersion 3 (Bun 1.4); Netlify's default Bun 1.3 cannot read it
+  BUN_VERSION = "1.4.4"
   # Project-local node_modules on Netlify so the SSR function zip is complete (see bunfig.netlify.toml)
   BUN_FLAGS = "--frozen-lockfile --config=bunfig.netlify.toml"
